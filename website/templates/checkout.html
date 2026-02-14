@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout - VOID</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="top-bar">
+    <div class="brand">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Brand Logo" class="logo">
+        <span class="brand-name">VOID</span>
+    </div>
+</header>
+
+<main class="checkout-container">
+    <h1>Checkout</h1>
+    <p>Total: <strong>${{ total_price }}</strong></p>
+
+    <!-- Minimalist Payment Form -->
+    <form action="{{ url_for('process_payment') }}" method="POST">
+        <input type="hidden" name="total_price" value="{{ total_price }}">
+        <button type="submit" class="pay-btn">Pay Now</button>
+    </form>
+</main>
+
+<footer class="footer">
+    <p>© 2026 VOID. All Rights Reserved.</p>
+</footer>
+</body>
+</html>
