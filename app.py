@@ -8,15 +8,11 @@ import sqlite3
 # =========================
 load_dotenv()
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")
-if not app.secret_key:
-    raise ValueError("SECRET_KEY is not set in .env")
+app.secret_key = ebc60edce7b9ed46d32bb5a2544b0c13e587785a9c4376b961c041425ed1bf01
 
 # WhatsApp Business number
 domain=os.getenv("DOMAIN_NAME")
-WHATSAPP_NUMBER = os.getenv("WHATSAPP_NUMBER")
-if not WHATSAPP_NUMBER:
-    raise ValueError("WHATSAPP_NUMBER is not set in .env")
+WHATSAPP_NUMBER = 27610835100
 
 # =========================
 # DATABASE CONFIG
@@ -208,3 +204,4 @@ def payment_success():
 if __name__ == "__main__":
     init_db_with_samples()
     app.run(host=domain, port=5000, debug=True)
+
