@@ -8,7 +8,7 @@ import sqlite3
 # =========================
 load_dotenv()
 app = Flask(__name__)
-app.secret_key = ebc60edce7b9ed46d32bb5a2544b0c13e587785a9c4376b961c041425ed1bf01
+app.secret_key = "ebc60edce7b9ed46d32bb5a2544b0c13e587785a9c4376b961c041425ed1bf01"
 
 # WhatsApp Business number
 domain=os.getenv("DOMAIN_NAME")
@@ -204,4 +204,5 @@ def payment_success():
 if __name__ == "__main__":
     init_db_with_samples()
     app.run(host=domain, port=5000, debug=True)
+
 
