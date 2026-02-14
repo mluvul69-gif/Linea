@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - LINEA SOLENNE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- TOP BAR / HEADER -->
+    <header class="top-bar">
+        <div class="brand">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Brand Logo" class="logo">
+            <span class="brand-name">LINEA SOLENNE</span>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- HAMBURGER DASHBOARD -->
+    <div class="dashboard" id="dashboard">
+        <div class="close-btn" id="close-dashboard">&times;</div>
+        <nav class="dashboard-nav">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('shop') }}">Shopping</a>
+            <a href="{{ url_for('cart') }}">Cart</a>
+        </nav>
+    </div>
+
+    <!-- MAIN SHOP CONTAINER -->
+    <main class="shop-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Collections</a></li>
+            </ul>
+
+            <h3>Price</h3>
+            <input type="range" min="0" max="500" step="10" id="priceRange">
+            <span id="priceValue">$0 - $500</span>
+
+            <h3>Color</h3>
+            <div class="color-options">
+                <span class="color black"></span>
+                <span class="color white"></span>
+                <span class="color grey"></span>
+            </div>
+
+            <h3>Size</h3>
+            <div class="size-options">
+                <span>S</span>
+                <span>M</span>
+                <span>L</span>
+                <span>XL</span>
+            </div>
+        </aside>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <div class="shop-header">
+                <h2>Shop All</h2>
+            </div> 
+            <div class="product-grid">
+                {% for product in products %}
+                <div class="product-card">
+                    <a href="{{ url_for('product_detail', product_id=product['id']) }}">
+                        <img src="{{ url_for('static', filename=product['image_path'].replace('static/', '')) }}" alt="{{ product['name'] }}">
+                        <div class="product-info">
+                            <span class="product-title">{{ product['name'] }}</span>
+                            <span class="product-price">${{ product['price'] }}</span>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 VOID. All Rights Reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
