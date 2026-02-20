@@ -3,4 +3,5 @@ stripe
 python-dotenv
 argon2-cffi
 flask-wtf
+gunicorn
 email-validator
