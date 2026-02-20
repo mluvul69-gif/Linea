@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product['name'] }} - VOID</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/product-detail.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <header class="top-bar">
+        <div class="top-left">
+            <span class="product-name">{{ product['name'] }}</span>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- HAMBURGER DASHBOARD -->
+    <div class="dashboard" id="dashboard">
+        <div class="close-btn" id="close-dashboard">&times;</div>
+        <nav class="dashboard-nav">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('shop') }}">Shop</a>
+            <a href="{{ url_for('cart') }}">Cart</a>
+        </nav>
+    </div>
+
+    <!-- PRODUCT DETAIL SECTION -->
+    <main class="product-detail-container">
+        <!-- Product Image -->
+        <div class="product-image">
+            <img src="{{ url_for('static', filename=product['image_path'].replace('static/', '')) }}" alt="{{ product['name'] }}">
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+            <h1 class="product-title">{{ product['name'] }}</h1>
+            <div class="price-delivery">
+                <span class="product-price">${{ product['price'] }}</span>
+                <span class="delivery-info">• Delivered by VOID Logistics</span>
+            </div>
+            <p class="product-description">
+                {{ product['description'] }}
+            </p>
+
+            <!-- ADD TO CART FORM -->
+            <form action="{{ url_for('add_to_cart') }}" method="POST" class="add-to-cart-form">
+                <input type="hidden" name="product_id" value="{{ product['id'] }}">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="add-to-cart">
+                    <span class="material-icons">add</span>
+                    Add to Cart
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 VOID. All Rights Reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

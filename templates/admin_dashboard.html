@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div class="brand">
+        <span class="brand-name">ADMIN DASHBOARD</span>
+    </div>
+</div>
+
+<!-- ADD PRODUCT SECTION -->
+<section class="products-section">
+    <h2 class="section-title">Add New Product</h2>
+
+    <form method="POST" action="/admin/add-product" style="max-width:400px; margin:auto;">
+        <input name="name" placeholder="Product Name" required
+               style="width:100%; padding:10px; margin-bottom:10px; background:#111; border:1px solid #fff; color:#fff;">
+
+        <input name="description" placeholder="Description"
+               style="width:100%; padding:10px; margin-bottom:10px; background:#111; border:1px solid #fff; color:#fff;">
+
+        <input name="price" type="number" step="0.01" placeholder="Price" required
+               style="width:100%; padding:10px; margin-bottom:10px; background:#111; border:1px solid #fff; color:#fff;">
+
+        <input name="image_url" placeholder="Image URL"
+               style="width:100%; padding:10px; margin-bottom:20px; background:#111; border:1px solid #fff; color:#fff;">
+
+        <button type="submit" class="shop-now-button">
+            Add Product
+        </button>
+    </form>
+</section>
+
+<!-- EXISTING PRODUCTS -->
+<section class="products-section">
+    <h2 class="section-title">Update Products</h2>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card" style="padding:20px; background:#111;">
+
+            {% if product.image_url %}
+            <img src="{{ product.image_url }}" alt="{{ product.name }}">
+            {% endif %}
+
+            <form method="POST" action="/admin/update-product/{{ product.id }}" style="margin-top:15px;">
+                <input name="name" value="{{ product.name }}" required
+                       style="width:100%; padding:8px; margin-bottom:8px; background:#000; border:1px solid #fff; color:#fff;">
+
+                <input name="description" value="{{ product.description }}"
+                       style="width:100%; padding:8px; margin-bottom:8px; background:#000; border:1px solid #fff; color:#fff;">
+
+                <input name="price" type="number" step="0.01" value="{{ product.price }}" required
+                       style="width:100%; padding:8px; margin-bottom:8px; background:#000; border:1px solid #fff; color:#fff;">
+
+                <input name="image_url" value="{{ product.image_url }}"
+                       style="width:100%; padding:8px; margin-bottom:15px; background:#000; border:1px solid #fff; color:#fff;">
+
+                <button type="submit" class="shop-now-button">
+                    Update
+                </button>
+            </form>
+
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+</body>
+</html>

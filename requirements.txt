@@ -1,0 +1,6 @@
+flask
+stripe
+python-dotenv
+argon2-cffi
+flask-wtf
+email-validator

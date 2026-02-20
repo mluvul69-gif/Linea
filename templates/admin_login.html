@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div class="brand">
+        <span class="brand-name">ADMIN PANEL</span>
+    </div>
+</div>
+
+<!-- HERO STYLE LOGIN -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Admin Access</h1>
+        <p>Authorized personnel only</p>
+
+        <form method="POST" style="margin-top:30px;">
+            <input type="text" name="username" placeholder="Username"
+                   style="padding:12px; width:250px; margin-bottom:10px; background:#111; border:1px solid #fff; color:#fff;"
+                   required><br>
+
+            <input type="password" name="password" placeholder="Password"
+                   style="padding:12px; width:250px; margin-bottom:20px; background:#111; border:1px solid #fff; color:#fff;"
+                   required><br>
+
+            <button type="submit" class="shop-now-button">
+                Login
+            </button>
+        </form>
+    </div>
+</section>
+
+</body>
+</html>
